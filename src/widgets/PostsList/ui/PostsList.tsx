@@ -1,9 +1,11 @@
 import { PostCard } from "@/entities";
-import { postsMock } from "@/shared/config/postsMock";
+
+import usePosts from "../model/usePosts";
 import { useState } from "react";
 import styles from "./PostsList.module.scss";
 
 const PostsList = (): React.ReactElement => {
+  const { posts, setPosts } = usePosts();
   const [currentTag, setCurrentTag] = useState<string | null>(null);
 
   const handleTagClick = (tag: string) => {
@@ -31,23 +33,18 @@ const PostsList = (): React.ReactElement => {
           {currentTag}
         </button>
       )}
-      {currentTag !== null
-        ? postsMock
-            .filter((post) => post.tags.includes(currentTag))
-            .map((post) => (
-              <PostCard
-                key={post.id}
-                post={post}
-                handleTagClick={handleTagClick}
-              />
-            ))
-        : postsMock.map((post) => (
-            <PostCard
-              key={post.id}
-              post={post}
-              handleTagClick={handleTagClick}
-            />
-          ))}
+      {posts
+        .filter((post) =>
+          currentTag !== null ? post.tags.includes(currentTag) : post,
+        )
+        .map((post) => (
+          <PostCard
+            key={post.id}
+            post={post}
+            setPosts={setPosts}
+            handleTagClick={handleTagClick}
+          />
+        ))}
     </div>
   );
 };

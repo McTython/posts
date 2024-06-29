@@ -35,22 +35,28 @@
     }
   }
   &__footer {
+    --iconsize: 22px;
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    font-size: 18px;
+    font-size: 20px;
+    p {
+      cursor: default;
+    }
     &__left {
       display: flex;
       gap: 15px;
+      align-items: center;
       &__reaction {
         display: flex;
-        align-items: center;
         gap: 4px;
+        align-items: center;
         &__button {
+          display: flex;
           border: none;
           outline: none;
           background: none;
-          font-size: 18px;
+          font-size: var(--iconsize);
           cursor: pointer;
         }
       }
@@ -58,6 +64,9 @@
     &__right {
       display: flex;
       gap: 4px;
+      &__views {
+        font-size: var(--iconsize);
+      }
     }
   }
 }
