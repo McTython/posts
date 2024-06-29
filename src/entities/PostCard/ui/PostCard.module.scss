@@ -1,0 +1,63 @@
+.postcard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 60%;
+  padding: 15px 20px;
+  background-color: #3f3351;
+  color: #fff;
+  border-radius: 5px;
+  &__user {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  &__body {
+    text-align: justify;
+  }
+  &__tags {
+    display: flex;
+    gap: 10px;
+    &__button {
+      background: #864879;
+      padding: 2px 15px;
+      border-radius: 15px;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: Roboto;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+      &:hover {
+        background: #6d2c5f;
+      }
+    }
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    font-size: 18px;
+    &__left {
+      display: flex;
+      gap: 15px;
+      &__reaction {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        &__button {
+          border: none;
+          outline: none;
+          background: none;
+          font-size: 18px;
+          cursor: pointer;
+        }
+      }
+    }
+    &__right {
+      display: flex;
+      gap: 4px;
+    }
+  }
+}

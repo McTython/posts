@@ -1,22 +1,11 @@
 import { LikeOutlined, DislikeOutlined, EyeOutlined } from "@ant-design/icons";
 import { IPostCard } from "./interfaces/IPostCard";
+import styles from "./PostCard.module.scss";
 
-const PostCard = ({ post }: IPostCard): React.ReactElement => {
+const PostCard = ({ post, handleTagClick }: IPostCard): React.ReactElement => {
   return (
-    <div
-      style={{
-        display: "flex",
-        margin: "0 auto",
-        width: "60%",
-        padding: "15px 20px",
-        backgroundColor: "#3F3351",
-        color: "#fff",
-        borderRadius: "5px",
-        flexDirection: "column",
-        gap: "12px",
-      }}
-    >
-      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+    <div className={styles.postcard}>
+      <div className={styles.postcard__user}>
         <div>
           <img
             src={
@@ -28,89 +17,41 @@ const PostCard = ({ post }: IPostCard): React.ReactElement => {
         <div>{post.userName}</div>
       </div>
       <div>{post.title}</div>
-      <div style={{ textAlign: "justify" }}>{post.body}</div>
-      <div style={{ display: "flex", gap: "10px" }}>
+      <div className={styles.postcard__body}>{post.body}</div>
+      <div className={styles.postcard__tags}>
         {post.tags.map((tag) => (
           <button
             key={tag}
             type="button"
-            style={{
-              background: "#864879",
-              padding: "2px 15px",
-              borderRadius: "15px",
-              border: "none",
-              outline: "none",
-              color: "#fff",
-              fontFamily: "Roboto",
-              fontSize: "16px",
-              cursor: "pointer",
-            }}
+            className={styles.postcard__tags__button}
+            onClick={() => handleTagClick(tag)}
           >
             {tag}
           </button>
         ))}
       </div>
-      <div
-        style={{
-          display: "flex",
-          gap: "15px",
-          justifyContent: "space-between",
-          fontSize: "18px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "15px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              height: "20px",
-              gap: "4px",
-            }}
-          >
+      <div className={styles.postcard__footer}>
+        <div className={styles.postcard__footer__left}>
+          <div className={styles.postcard__footer__left__reaction}>
             <button
               type="button"
-              style={{
-                border: "none",
-                outline: "none",
-                background: "none",
-                cursor: "pointer",
-                fontSize: "18px",
-              }}
+              className={styles.postcard__footer__left__reaction__button}
             >
               <LikeOutlined style={{ color: "#fff" }} />
             </button>
             {post.reactions.likes}
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                height: "20px",
-              }}
+          <div className={styles.postcard__footer__left__reaction}>
+            <button
+              type="button"
+              className={styles.postcard__footer__left__reaction__button}
             >
-              <button
-                type="button"
-                style={{
-                  border: "none",
-                  outline: "none",
-                  background: "none",
-                  cursor: "pointer",
-                  fontSize: "18px",
-                }}
-              >
-                <DislikeOutlined style={{ color: "#fff" }} />
-              </button>
-            </div>
+              <DislikeOutlined style={{ color: "#fff" }} />
+            </button>
             {post.reactions.dislikes}
           </div>
         </div>
-        <div style={{ display: "flex", gap: "4px" }}>
+        <div className={styles.postcard__footer__right}>
           <EyeOutlined style={{ color: "#fff" }} />
           {post.views}
         </div>
